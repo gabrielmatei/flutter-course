@@ -43,18 +43,61 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _resetGame() {
-    // TODO
     setState(() {
       _isFinished = false;
       _initialNumber = 1 + _random.nextInt(100);
+      _guessResponse = null;
     });
+  }
+
+  bool _checkGuess() {
+    bool win = false;
+    String response = '';
+    if (_initialNumber == _currentNumber) {
+      response = 'You guessed right';
+      win = true;
+    } else if (_currentNumber < _initialNumber) {
+      response = 'Try higher';
+    } else {
+      response = 'Try lower';
+    }
+    setState(() => _guessResponse = response);
+
+    return win;
   }
 
   void _submitForm() {
     final FormState form = _formKey.currentState;
     if (form.validate()) {
       form.save();
-      setState(() => _guessResponse = 'You tried $_currentNumber\n');
+      form.reset();
+
+      final bool gameWon = _checkGuess();
+      if (gameWon) {
+        setState(() => _isFinished = true);
+
+        showDialog<Widget>(
+          barrierDismissible: false,
+          context: context,
+          builder: (_) => AlertDialog(
+            title: const Text('You guessed right'),
+            content: Text('It was $_initialNumber'),
+            actions: <Widget>[
+              FlatButton(
+                child: const Text('Try again!'),
+                onPressed: () {
+                  _resetGame();
+                  Navigator.of(context).pop();
+                },
+              ),
+              FlatButton(
+                child: const Text('OK'),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            ],
+          ),
+        );
+      }
     }
   }
 
@@ -82,10 +125,9 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(fontSize: 20.0),
               ),
               const SizedBox(height: 20.0),
-              Text('Initial $_initialNumber'),
               if (_guessResponse != null)
                 Text(
-                  _guessResponse,
+                  'You tried $_currentNumber\n$_guessResponse',
                   textAlign: TextAlign.center,
                   style: const TextStyle(fontSize: 36.0),
                 ),
@@ -123,10 +165,17 @@ class _HomePageState extends State<HomePage> {
                           },
                         ),
                         const SizedBox(height: 10.0),
-                        RaisedButton(
-                          child: Text(_isFinished ? 'Reset' : 'Guess'),
-                          onPressed: _isFinished ? _resetGame : _submitForm,
-                        ),
+                        if (_isFinished == true)
+                          RaisedButton(
+                            child: const Text('Reset'),
+                            onPressed: _resetGame,
+                            color: Colors.blue,
+                          )
+                        else
+                          RaisedButton(
+                            child: const Text('Guess'),
+                            onPressed: _submitForm,
+                          ),
                       ],
                     ),
                   ),
