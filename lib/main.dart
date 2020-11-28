@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_course/helpers.dart';
 
 void main() {
   runApp(App());
@@ -31,7 +32,16 @@ class _HomePageState extends State<HomePage> {
   int _number;
 
   String _numberShape(int number) {
-    return 'result';
+    final bool isSquare = MathHelper.isSquare(number);
+    final bool isTriangular = MathHelper.isTriangular(number);
+
+    if (isSquare && isTriangular)
+      return 'Number $number is both SQUARE and TRIANGULAR.';
+    if (isSquare) //
+      return 'Number $number is SQUARE.';
+    if (isTriangular) //
+      return 'Number $number is TRIANGULAR.';
+    return 'Number $number is neither TRIANGULAR or SQUARE.';
   }
 
   void _submitForm() {
