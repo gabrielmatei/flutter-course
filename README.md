@@ -8,3 +8,5 @@
 ## Projects
 
 - [Currency Converter](https://github.com/gabrielmatei/flutter-course/tree/projects/currency-converter)
+- [Number Shape](https://github.com/gabrielmatei/flutter-course/tree/projects/number-shape)
+- [Guess my number](https://github.com/gabrielmatei/flutter-course/tree/projects/guess-my-number)
