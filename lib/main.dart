@@ -25,10 +25,38 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Course'),
+        title: const Text('Number Shapes'),
       ),
-      body: const Center(
-        child: Text('Hello!'),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text(
+              'Please input a number to see it it is square or triangular.',
+              style: TextStyle(
+                fontSize: 18.0,
+              ),
+            ),
+            const SizedBox(height: 20.0),
+            TextFormField(
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Number..',
+              ),
+              validator: (String value) {
+                final int parsedValue = int.tryParse(value);
+                return parsedValue == null ? 'Please enter a number' : null;
+              },
+              onSaved: (String value) {},
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.check),
+        onPressed: () {},
       ),
     );
   }
