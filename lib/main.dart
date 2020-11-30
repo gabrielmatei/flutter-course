@@ -35,12 +35,15 @@ class _HomePageState extends State<HomePage> {
     final bool isSquare = MathHelper.isSquare(number);
     final bool isTriangular = MathHelper.isTriangular(number);
 
-    if (isSquare && isTriangular)
+    if (isSquare && isTriangular) {
       return 'Number $number is both SQUARE and TRIANGULAR.';
-    if (isSquare) //
+    }
+    if (isSquare) {
       return 'Number $number is SQUARE.';
-    if (isTriangular) //
+    }
+    if (isTriangular) {
       return 'Number $number is TRIANGULAR.';
+    }
     return 'Number $number is neither TRIANGULAR or SQUARE.';
   }
 
