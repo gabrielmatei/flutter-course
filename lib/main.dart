@@ -154,10 +154,12 @@ class _HomePageState extends State<HomePage> {
                           ),
                           validator: (String value) {
                             final int parsedValue = int.tryParse(value);
-                            if (parsedValue == null) //
+                            if (parsedValue == null) {
                               return 'Enter a number';
-                            if (parsedValue < 1 || parsedValue > 100)
+                            }
+                            if (parsedValue < 1 || parsedValue > 100) {
                               return 'Number not in range';
+                            }
                             return null;
                           },
                           onSaved: (String value) {
