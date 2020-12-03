@@ -1,3 +1,4 @@
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -25,10 +26,20 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Course'),
+        title: const Text('Basic Phrases'),
       ),
-      body: const Center(
-        child: Text('Hello!'),
+      body: Center(
+        child: RaisedButton(
+          child: const Text('Hello!'),
+          onPressed: () {
+            const String uri = 'assets/audio/hello.mp3';
+            
+            final AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
+
+            assetsAudioPlayer.open(Audio(uri));
+            assetsAudioPlayer.play();
+          },
+        ),
       ),
     );
   }

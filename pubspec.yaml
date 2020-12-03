@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   pedantic: ^1.9.2
+  assets_audio_player: ^2.0.13+1
 
 dev_dependencies:
   flutter_test:
@@ -17,3 +18,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/audio/
