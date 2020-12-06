@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_course/models/basic_phrase.dart';
 import 'package:flutter_course/models/basic_phrase_translation.dart';
 
+import 'components/play_button.dart';
+
 void main() {
   runApp(App());
 }
@@ -37,7 +39,7 @@ class _HomePageState extends State<HomePage> {
         audioUri: 'assets/audio/salut.mp3',
       ),
       english: BasicPhrase(
-        text: 'Hello',
+        text: 'Salut (Engleza)',
         audioUri: 'assets/audio/hello.mp3',
       ),
     ),
@@ -47,7 +49,7 @@ class _HomePageState extends State<HomePage> {
         audioUri: 'assets/audio/ce_mai_faci.mp3',
       ),
       english: BasicPhrase(
-        text: 'How are you?',
+        text: 'Ce mai faci? (Engleza)',
         audioUri: 'assets/audio/how_are_you.mp3',
       ),
     ),
@@ -57,7 +59,7 @@ class _HomePageState extends State<HomePage> {
         audioUri: 'assets/audio/sunt_bine.mp3',
       ),
       english: BasicPhrase(
-        text: 'I\'m fine',
+        text: 'Sunt bine (Engleza)',
         audioUri: 'assets/audio/im_fine.mp3',
       ),
     ),
@@ -67,7 +69,7 @@ class _HomePageState extends State<HomePage> {
         audioUri: 'assets/audio/ma_numesc.mp3',
       ),
       english: BasicPhrase(
-        text: 'My name is',
+        text: 'Ma numesc (Engleza)',
         audioUri: 'assets/audio/my_name_is.mp3',
       ),
     ),
@@ -99,19 +101,15 @@ class _HomePageState extends State<HomePage> {
                 basicPhraseTranslations[index];
             return Row(
               children: <Widget>[
-                Expanded(
-                  child: RaisedButton(
-                    child: Text(currentTranslation.romanian.text),
-                    onPressed: () =>
-                        _playAudio(currentTranslation.romanian.audioUri),
-                  ),
+                PlayButton(
+                  text: currentTranslation.romanian.text,
+                  onPressed: () =>
+                      _playAudio(currentTranslation.romanian.audioUri),
                 ),
-                Expanded(
-                  child: RaisedButton(
-                    child: Text(currentTranslation.english.text),
-                    onPressed: () =>
-                        _playAudio(currentTranslation.english.audioUri),
-                  ),
+                PlayButton(
+                  text: currentTranslation.english.text,
+                  onPressed: () =>
+                      _playAudio(currentTranslation.english.audioUri),
                 ),
               ],
             );
