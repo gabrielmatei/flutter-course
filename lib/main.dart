@@ -31,8 +31,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<BasicPhraseTranslation> basicPhraseTranslations =
-      <BasicPhraseTranslation>[
+  final List<BasicPhraseTranslation> basicPhraseTranslations = <BasicPhraseTranslation>[
     const BasicPhraseTranslation(
       romanian: BasicPhrase(
         text: 'Salut',
@@ -97,19 +96,16 @@ class _HomePageState extends State<HomePage> {
       body: ListView.builder(
           itemCount: basicPhraseTranslations.length,
           itemBuilder: (_, int index) {
-            final BasicPhraseTranslation currentTranslation =
-                basicPhraseTranslations[index];
+            final BasicPhraseTranslation currentTranslation = basicPhraseTranslations[index];
             return Row(
               children: <Widget>[
                 PlayButton(
                   text: currentTranslation.romanian.text,
-                  onPressed: () =>
-                      _playAudio(currentTranslation.romanian.audioUri),
+                  onPressed: () => _playAudio(currentTranslation.romanian.audioUri),
                 ),
                 PlayButton(
                   text: currentTranslation.english.text,
-                  onPressed: () =>
-                      _playAudio(currentTranslation.english.audioUri),
+                  onPressed: () => _playAudio(currentTranslation.english.audioUri),
                 ),
               ],
             );
