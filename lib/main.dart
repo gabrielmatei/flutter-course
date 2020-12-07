@@ -1,5 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:http/http.dart' as http;
+
+import 'models/movie.dart';
 
 void main() {
   runApp(App());
@@ -35,10 +40,14 @@ class _HomePageState extends State<HomePage> {
   List<String> _genreFilters;
   String _genreFilter;
 
+  bool _isLoading = false;
+  final List<Movie> _movies = <Movie>[];
+
   @override
   void initState() {
     super.initState();
     _resetFilters();
+    _fetchMovies();
   }
 
   void _resetFilters() {
@@ -78,6 +87,28 @@ class _HomePageState extends State<HomePage> {
         'Western',
       ];
     });
+  }
+
+  Future<void> _fetchMovies() async {
+    setState(() => _isLoading = true);
+
+    _movies.clear();
+
+    final Uri uri = Uri.https('yts.mx', '/api/v2/list_movies.json}', <String, String>{
+      'quality': _qualityFilters.keys.map((String key) => _qualityFilters[key] ? key : '').toList().join(''),
+      'genre': _genreFilter,
+      'minimum_rating': '${_minimumRatingFilter * 2}',
+    });
+    final http.Response response = await http.get(uri);
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> jsonData = json.decode(response.body);
+      final List<dynamic> moviesData = jsonData['data']['movies'];
+      for (final dynamic movieData in moviesData) {
+        _movies.add(Movie.fromJson(movieData));
+      }
+    }
+
+    setState(() => _isLoading = false);
   }
 
   Widget _appBar() {
@@ -158,7 +189,10 @@ class _HomePageState extends State<HomePage> {
               color: Colors.green,
               padding: EdgeInsets.zero,
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () {
+                Navigator.of(context).pop();
+                _fetchMovies();
+              },
             ),
           ],
         ),
@@ -172,11 +206,11 @@ class _HomePageState extends State<HomePage> {
       key: _scaffoldKey,
       appBar: _appBar(),
       body: Column(
-        children: [
+        children: <Widget>[
           Row(
             children: <Widget>[
               if (_genreFilter != '') Chip(label: Text(_genreFilter)),
-              if (_minimumRatingFilter > 0.0) Chip(label: Text('$_minimumRatingFilter')),
+              if (_minimumRatingFilter > 0.0) Chip(label: Text('${_minimumRatingFilter * 2}')),
               ..._qualityFilters.keys
                   .where((String key) => _qualityFilters[key])
                   .map((String key) => Chip(
@@ -185,6 +219,40 @@ class _HomePageState extends State<HomePage> {
                   .toList(),
             ],
           ),
+          Expanded(
+            child: _isLoading
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : GridView.builder(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1 / 2,
+                    ),
+                    itemCount: _movies.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Card(
+                        child: Column(
+                          children: <Widget>[
+                            Image.network(_movies[index].cover),
+                            Text(_movies[index].title),
+                            Text('${_movies[index].rating}'),
+                            Row(
+                              children: <Widget>[
+                                ..._movies[index]
+                                    .genres
+                                    .map((String key) => Chip(
+                                          label: Text(key),
+                                        ))
+                                    .toList(),
+                              ],
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+          )
         ],
       ),
       endDrawer: _filterDrawer(),
