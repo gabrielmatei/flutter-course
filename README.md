@@ -12,3 +12,4 @@
 - [Guess my number](https://github.com/gabrielmatei/flutter-course/tree/projects/guess-my-number)
 - [Basic Phrases](https://github.com/gabrielmatei/flutter-course/tree/projects/basic-phrases)
 - [Tic Tac Toe](https://github.com/gabrielmatei/flutter-course/tree/projects/tic-tac-toe)
+- [Movie app](https://github.com/gabrielmatei/flutter-course/tree/projects/movie-app)
