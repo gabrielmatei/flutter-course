@@ -1,9 +1,10 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_course/components/movie_card.dart';
+import 'package:flutter_course/components/movie_genre_filter.dart';
+import 'package:flutter_course/components/movie_quality_filter.dart';
+import 'package:flutter_course/services/movie_service.dart';
 
+import 'components/movie_rating_filter.dart';
 import 'models/movie.dart';
 
 void main() {
@@ -33,6 +34,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final MovieService _movieService = MovieService();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   Map<String, bool> _qualityFilters;
@@ -41,7 +43,7 @@ class _HomePageState extends State<HomePage> {
   String _genreFilter;
 
   bool _isLoading = false;
-  final List<Movie> _movies = <Movie>[];
+  List<Movie> _movies = <Movie>[];
 
   @override
   void initState() {
@@ -50,68 +52,22 @@ class _HomePageState extends State<HomePage> {
     _fetchMovies();
   }
 
-  void _resetFilters() {
-    setState(() {
-      _qualityFilters = <String, bool>{
-        '720p': false,
-        '1080p': false,
-        '2160p': false,
-        '3D': false,
-      };
-      _minimumRatingFilter = 0.0;
-      _genreFilter = '';
-      _genreFilters = <String>[
-        'Action',
-        'Adventure',
-        'Animation',
-        'Biography',
-        'Comedy',
-        'Crime',
-        'Documentary',
-        'Drama',
-        'Family',
-        'Fantasy',
-        'Film Noir',
-        'History',
-        'Horror',
-        'Music',
-        'Musical',
-        'Mystery',
-        'Romance',
-        'Sci-Fi',
-        'Short Film',
-        'Sport',
-        'Superhero',
-        'Thriller',
-        'War',
-        'Western',
-      ];
-    });
-  }
-
   Future<void> _fetchMovies() async {
     setState(() => _isLoading = true);
-
-    _movies.clear();
-
-    final Uri uri = Uri.https('yts.mx', '/api/v2/list_movies.json}', <String, String>{
-      'quality': _qualityFilters.keys.map((String key) => _qualityFilters[key] ? key : '').toList().join(''),
-      'genre': _genreFilter,
-      'minimum_rating': '${_minimumRatingFilter * 2}',
-    });
-    final http.Response response = await http.get(uri);
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> jsonData = json.decode(response.body);
-      final List<dynamic> moviesData = jsonData['data']['movies'];
-      for (final dynamic movieData in moviesData) {
-        _movies.add(Movie.fromJson(movieData));
-      }
-    }
-
+    _movies = await _movieService.getMovies(_qualityFilters, _genreFilter, _minimumRatingFilter);
     setState(() => _isLoading = false);
   }
 
-  Widget _appBar() {
+  void _resetFilters() {
+    setState(() {
+      _qualityFilters = _movieService.getQualityFilters();
+      _minimumRatingFilter = 0.0;
+      _genreFilter = '';
+      _genreFilters = _movieService.getGenreFilters();
+    });
+  }
+
+  Widget _buildAppBar() {
     return AppBar(
       title: const Text('Movie App'),
       backgroundColor: Colors.green,
@@ -124,7 +80,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _filterDrawer() {
+  Widget _buildFilterDrawer() {
     return Drawer(
       child: SafeArea(
         child: Column(
@@ -133,10 +89,15 @@ class _HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                const Text('Filters'),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    'Filters',
+                    style: TextStyle(fontSize: 22.0),
+                  ),
+                ),
                 FlatButton(
                   child: const Text('Reset filters'),
-                  padding: EdgeInsets.zero,
                   onPressed: _resetFilters,
                 ),
               ],
@@ -144,50 +105,34 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               child: ListView(
                 children: <Widget>[
-                  const Text('Quality'),
-                  ..._qualityFilters.keys
-                      .map((String key) => CheckboxListTile(
-                            title: Text(key),
-                            value: _qualityFilters[key],
-                            onChanged: (bool value) {
-                              setState(() => _qualityFilters[key] = value);
-                            },
-                          ))
-                      .toList(),
-                  const Text('Minimum rating'),
-                  RatingBar.builder(
-                    initialRating: _minimumRatingFilter,
-                    minRating: 0,
-                    itemCount: 5,
-                    allowHalfRating: true,
-                    itemBuilder: (BuildContext context, _) {
-                      return const Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                      );
+                  MovieQualityFilter(
+                    options: _qualityFilters,
+                    onChanged: (String key, bool value) {
+                      setState(() => _qualityFilters[key] = value);
                     },
-                    onRatingUpdate: (double rating) {
+                  ),
+                  const Divider(),
+                  MovieRatingFilter(
+                    selectedOption: _minimumRatingFilter,
+                    onChanged: (double rating) {
                       setState(() => _minimumRatingFilter = rating);
                     },
                   ),
-                  const Text('Genre'),
-                  ..._genreFilters
-                      .map((String genre) => RadioListTile<String>(
-                            title: Text(genre),
-                            value: genre,
-                            groupValue: _genreFilter,
-                            onChanged: (String value) {
-                              setState(() => _genreFilter = value);
-                            },
-                          ))
-                      .toList(),
+                  const Divider(),
+                  MovieGenreFilter(
+                    options: _genreFilters,
+                    selectedOption: _genreFilter,
+                    onChanged: (String value) {
+                      setState(() => _genreFilter = value);
+                    },
+                  ),
                 ],
               ),
             ),
             FlatButton(
               child: const Text('Filter'),
               color: Colors.green,
-              padding: EdgeInsets.zero,
+              padding: const EdgeInsets.all(16.0),
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               onPressed: () {
                 Navigator.of(context).pop();
@@ -200,25 +145,49 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Widget _buildActiveFilters() {
+    final List<String> filters = <String>[];
+
+    if (_genreFilter != '') {
+      filters.add(_genreFilter);
+    }
+    if (_minimumRatingFilter > 0.0) {
+      filters.add('${_minimumRatingFilter * 2}');
+    }
+    _qualityFilters.forEach((String key, bool value) {
+      if (value) {
+        filters.add(key);
+      }
+    });
+
+    return SizedBox(
+      height: filters.isNotEmpty ? 50 : 0,
+      child: ListView.builder(
+        // shrinkWrap: true,
+        padding: const EdgeInsets.only(left: 8.0),
+        scrollDirection: Axis.horizontal,
+        itemCount: filters.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Chip(
+              label: Text(filters[index]),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: _appBar(),
+      appBar: _buildAppBar(),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Row(
-            children: <Widget>[
-              if (_genreFilter != '') Chip(label: Text(_genreFilter)),
-              if (_minimumRatingFilter > 0.0) Chip(label: Text('${_minimumRatingFilter * 2}')),
-              ..._qualityFilters.keys
-                  .where((String key) => _qualityFilters[key])
-                  .map((String key) => Chip(
-                        label: Text(key),
-                      ))
-                  .toList(),
-            ],
-          ),
+          _buildActiveFilters(),
           Expanded(
             child: _isLoading
                 ? const Center(
@@ -227,35 +196,19 @@ class _HomePageState extends State<HomePage> {
                 : GridView.builder(
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio: 1 / 2,
+                      crossAxisSpacing: 8.0,
+                      mainAxisSpacing: 8.0,
+                      childAspectRatio: 2 / 3,
                     ),
                     itemCount: _movies.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return Card(
-                        child: Column(
-                          children: <Widget>[
-                            Image.network(_movies[index].cover),
-                            Text(_movies[index].title),
-                            Text('${_movies[index].rating}'),
-                            Row(
-                              children: <Widget>[
-                                ..._movies[index]
-                                    .genres
-                                    .map((String key) => Chip(
-                                          label: Text(key),
-                                        ))
-                                    .toList(),
-                              ],
-                            ),
-                          ],
-                        ),
-                      );
+                      return MovieCard(_movies[index]);
                     },
                   ),
           )
         ],
       ),
-      endDrawer: _filterDrawer(),
+      endDrawer: _buildFilterDrawer(),
     );
   }
 }
