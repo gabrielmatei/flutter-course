@@ -20,7 +20,7 @@ void main() {
     middleware: appMiddleware.middleware,
   );
 
-  store.dispatch(GetPhotos.start(initialState.query, initialState.page));
+  store.dispatch(GetPhotos.start(initialState.query, initialState.page, initialState.color));
 
   runApp(App(store: store));
 }

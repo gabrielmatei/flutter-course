@@ -7,7 +7,7 @@ part 'get_photos.freezed.dart';
 
 @freezed
 abstract class GetPhotos with _$GetPhotos {
-  const factory GetPhotos.start(String query, int page) = GetPhotosStart;
+  const factory GetPhotos.start(String query, int page, String color) = GetPhotosStart;
 
   const factory GetPhotos.successful(List<Photo> photos) = GetPhotosSuccessful;
 

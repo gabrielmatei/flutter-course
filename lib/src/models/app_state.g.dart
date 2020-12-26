@@ -14,12 +14,14 @@ class _$AppState extends AppState {
   @override
   final String query;
   @override
+  final String color;
+  @override
   final bool isLoading;
 
   factory _$AppState([void Function(AppStateBuilder) updates]) =>
       (new AppStateBuilder()..update(updates)).build();
 
-  _$AppState._({this.photos, this.page, this.query, this.isLoading})
+  _$AppState._({this.photos, this.page, this.query, this.color, this.isLoading})
       : super._() {
     if (photos == null) {
       throw new BuiltValueNullFieldError('AppState', 'photos');
@@ -29,6 +31,9 @@ class _$AppState extends AppState {
     }
     if (query == null) {
       throw new BuiltValueNullFieldError('AppState', 'query');
+    }
+    if (color == null) {
+      throw new BuiltValueNullFieldError('AppState', 'color');
     }
     if (isLoading == null) {
       throw new BuiltValueNullFieldError('AppState', 'isLoading');
@@ -49,13 +54,15 @@ class _$AppState extends AppState {
         photos == other.photos &&
         page == other.page &&
         query == other.query &&
+        color == other.color &&
         isLoading == other.isLoading;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, photos.hashCode), page.hashCode), query.hashCode),
+        $jc($jc($jc($jc(0, photos.hashCode), page.hashCode), query.hashCode),
+            color.hashCode),
         isLoading.hashCode));
   }
 
@@ -65,6 +72,7 @@ class _$AppState extends AppState {
           ..add('photos', photos)
           ..add('page', page)
           ..add('query', query)
+          ..add('color', color)
           ..add('isLoading', isLoading))
         .toString();
   }
@@ -85,6 +93,10 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   String get query => _$this._query;
   set query(String query) => _$this._query = query;
 
+  String _color;
+  String get color => _$this._color;
+  set color(String color) => _$this._color = color;
+
   bool _isLoading;
   bool get isLoading => _$this._isLoading;
   set isLoading(bool isLoading) => _$this._isLoading = isLoading;
@@ -96,6 +108,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       _photos = _$v.photos?.toBuilder();
       _page = _$v.page;
       _query = _$v.query;
+      _color = _$v.color;
       _isLoading = _$v.isLoading;
       _$v = null;
     }
@@ -124,6 +137,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
               photos: photos.build(),
               page: page,
               query: query,
+              color: color,
               isLoading: isLoading);
     } catch (_) {
       String _$failedField;

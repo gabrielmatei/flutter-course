@@ -30,6 +30,7 @@ class AppMiddleware {
       final List<Photo> photos = await _unsplashApi.getPhotos(
         startAction.query,
         startAction.page,
+        startAction.color,
       );
       final GetPhotos successful = GetPhotos.successful(photos);
       store.dispatch(successful);

@@ -13,7 +13,8 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
       builder
         ..isLoading = false
         ..page = 1
-        ..query = '';
+        ..query = ''
+        ..color = '';
     });
   }
 
@@ -24,6 +25,8 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
   int get page;
 
   String get query;
+
+  String get color;
 
   bool get isLoading;
 }

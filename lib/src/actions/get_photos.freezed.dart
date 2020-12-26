@@ -14,10 +14,11 @@ class _$GetPhotosTearOff {
   const _$GetPhotosTearOff();
 
 // ignore: unused_element
-  GetPhotosStart start(String query, int page) {
+  GetPhotosStart start(String query, int page, String color) {
     return GetPhotosStart(
       query,
       page,
+      color,
     );
   }
 
@@ -44,13 +45,13 @@ const $GetPhotos = _$GetPhotosTearOff();
 mixin _$GetPhotos {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult start(String query, int page),
+    @required TResult start(String query, int page, String color),
     @required TResult successful(List<Photo> photos),
     @required TResult error(dynamic error),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult start(String query, int page),
+    TResult start(String query, int page, String color),
     TResult successful(List<Photo> photos),
     TResult error(dynamic error),
     @required TResult orElse(),
@@ -90,7 +91,7 @@ abstract class $GetPhotosStartCopyWith<$Res> {
   factory $GetPhotosStartCopyWith(
           GetPhotosStart value, $Res Function(GetPhotosStart) then) =
       _$GetPhotosStartCopyWithImpl<$Res>;
-  $Res call({String query, int page});
+  $Res call({String query, int page, String color});
 }
 
 /// @nodoc
@@ -107,28 +108,33 @@ class _$GetPhotosStartCopyWithImpl<$Res> extends _$GetPhotosCopyWithImpl<$Res>
   $Res call({
     Object query = freezed,
     Object page = freezed,
+    Object color = freezed,
   }) {
     return _then(GetPhotosStart(
       query == freezed ? _value.query : query as String,
       page == freezed ? _value.page : page as int,
+      color == freezed ? _value.color : color as String,
     ));
   }
 }
 
 /// @nodoc
 class _$GetPhotosStart implements GetPhotosStart {
-  const _$GetPhotosStart(this.query, this.page)
+  const _$GetPhotosStart(this.query, this.page, this.color)
       : assert(query != null),
-        assert(page != null);
+        assert(page != null),
+        assert(color != null);
 
   @override
   final String query;
   @override
   final int page;
+  @override
+  final String color;
 
   @override
   String toString() {
-    return 'GetPhotos.start(query: $query, page: $page)';
+    return 'GetPhotos.start(query: $query, page: $page, color: $color)';
   }
 
   @override
@@ -138,14 +144,17 @@ class _$GetPhotosStart implements GetPhotosStart {
             (identical(other.query, query) ||
                 const DeepCollectionEquality().equals(other.query, query)) &&
             (identical(other.page, page) ||
-                const DeepCollectionEquality().equals(other.page, page)));
+                const DeepCollectionEquality().equals(other.page, page)) &&
+            (identical(other.color, color) ||
+                const DeepCollectionEquality().equals(other.color, color)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(query) ^
-      const DeepCollectionEquality().hash(page);
+      const DeepCollectionEquality().hash(page) ^
+      const DeepCollectionEquality().hash(color);
 
   @override
   $GetPhotosStartCopyWith<GetPhotosStart> get copyWith =>
@@ -154,27 +163,27 @@ class _$GetPhotosStart implements GetPhotosStart {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult start(String query, int page),
+    @required TResult start(String query, int page, String color),
     @required TResult successful(List<Photo> photos),
     @required TResult error(dynamic error),
   }) {
     assert(start != null);
     assert(successful != null);
     assert(error != null);
-    return start(query, page);
+    return start(query, page, color);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult start(String query, int page),
+    TResult start(String query, int page, String color),
     TResult successful(List<Photo> photos),
     TResult error(dynamic error),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (start != null) {
-      return start(query, page);
+      return start(query, page, color);
     }
     return orElse();
   }
@@ -209,10 +218,12 @@ class _$GetPhotosStart implements GetPhotosStart {
 }
 
 abstract class GetPhotosStart implements GetPhotos {
-  const factory GetPhotosStart(String query, int page) = _$GetPhotosStart;
+  const factory GetPhotosStart(String query, int page, String color) =
+      _$GetPhotosStart;
 
   String get query;
   int get page;
+  String get color;
   $GetPhotosStartCopyWith<GetPhotosStart> get copyWith;
 }
 
@@ -276,7 +287,7 @@ class _$GetPhotosSuccessful implements GetPhotosSuccessful {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult start(String query, int page),
+    @required TResult start(String query, int page, String color),
     @required TResult successful(List<Photo> photos),
     @required TResult error(dynamic error),
   }) {
@@ -289,7 +300,7 @@ class _$GetPhotosSuccessful implements GetPhotosSuccessful {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult start(String query, int page),
+    TResult start(String query, int page, String color),
     TResult successful(List<Photo> photos),
     TResult error(dynamic error),
     @required TResult orElse(),
@@ -396,7 +407,7 @@ class _$GetPhotosError implements GetPhotosError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult start(String query, int page),
+    @required TResult start(String query, int page, String color),
     @required TResult successful(List<Photo> photos),
     @required TResult error(dynamic error),
   }) {
@@ -409,7 +420,7 @@ class _$GetPhotosError implements GetPhotosError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult start(String query, int page),
+    TResult start(String query, int page, String color),
     TResult successful(List<Photo> photos),
     TResult error(dynamic error),
     @required TResult orElse(),

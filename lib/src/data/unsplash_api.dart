@@ -12,7 +12,7 @@ class UnsplashApi {
 
   final Client _client;
 
-  Future<List<Photo>> getPhotos(String query, int page) async {
+  Future<List<Photo>> getPhotos(String query, int page, String color) async {
     final Uri url = Uri(
       scheme: 'https',
       host: 'api.unsplash.com',
@@ -20,6 +20,7 @@ class UnsplashApi {
       queryParameters: <String, String>{
         'query': query,
         'page': '$page',
+        if (color != '') 'color': color,
       },
     );
 

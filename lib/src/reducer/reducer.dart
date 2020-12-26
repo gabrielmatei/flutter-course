@@ -1,4 +1,5 @@
 import 'package:flutter_course/src/actions/get_photos.dart';
+import 'package:flutter_course/src/actions/set_color.dart';
 import 'package:flutter_course/src/actions/set_query.dart';
 import 'package:flutter_course/src/models/app_state.dart';
 
@@ -17,6 +18,10 @@ AppState reducer(AppState state, dynamic action) {
   } else if (action is SetQuery) {
     builder
       ..query = action.query
+      ..photos.clear();
+  } else if (action is SetColor) {
+    builder
+      ..color = action.color
       ..photos.clear();
   }
 
