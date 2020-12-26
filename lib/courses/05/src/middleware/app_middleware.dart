@@ -25,11 +25,16 @@ class AppMiddleware {
       return;
     }
     try {
-      final List<Movie> movies = await _ytsApi.getMovies();
-      final GetMoviesSuccessful successful = GetMoviesSuccessful(movies);
+      final List<Movie> movies = await _ytsApi.getMovies(
+        store.state.nextPage,
+        store.state.quality,
+        store.state.genre,
+        store.state.orderBy,
+      );
+      final GetMoviesSuccessful successful = GetMovies.successful(movies);
       store.dispatch(successful);
     } catch (e) {
-      final GetMoviesError error = GetMoviesError(e);
+      final GetMoviesError error = GetMovies.error(e);
       store.dispatch(error);
     }
   }

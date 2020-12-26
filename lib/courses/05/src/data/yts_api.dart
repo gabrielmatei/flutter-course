@@ -11,8 +11,21 @@ class YtsApi {
 
   final Client _client;
 
-  Future<List<Movie>> getMovies() async {
-    final Response response = await _client.get('https://yts.mx/api/v2/list_movies.json?limit=50');
+  Future<List<Movie>> getMovies(int page, String quality, String genre, String orderBy) async {
+    final Uri uri = Uri(
+      scheme: 'https',
+      host: 'yts.mx',
+      pathSegments: <String>['api', 'v2', 'list_movies.json'],
+      queryParameters: <String, String>{
+        'limit': '20',
+        'page': '$page',
+        if (quality != null) 'quality': quality,
+        if (genre != null) 'genre': genre,
+        'order_by': orderBy,
+      },
+    );
+
+    final Response response = await _client.get(uri);
     final List<dynamic> data = jsonDecode(response.body)['data']['movies'];
     return data.map((dynamic json) => Movie.from(json)).toList();
   }

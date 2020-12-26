@@ -4,6 +4,7 @@ import 'package:flutter_course/courses/05/src/data/yts_api.dart';
 import 'package:flutter_course/courses/05/src/middleware/app_middleware.dart';
 import 'package:flutter_course/courses/05/src/models/app_state.dart';
 import 'package:flutter_course/courses/05/src/presentation/home_page.dart';
+import 'package:flutter_course/courses/05/src/presentation/movie_detail.dart';
 import 'package:flutter_course/courses/05/src/reducer/reducer.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:http/http.dart';
@@ -40,7 +41,10 @@ class App extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: HomePage(),
+        home: const HomePage(),
+        routes: <String,WidgetBuilder>{
+          '/movieDetail': (BuildContext context) => const MovieDetail() ,
+        },
       ),
     );
   }

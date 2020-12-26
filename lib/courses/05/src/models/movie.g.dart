@@ -18,6 +18,8 @@ class _$MovieSerializer implements StructuredSerializer<Movie> {
   Iterable<Object> serialize(Serializers serializers, Movie object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(int)),
       'url',
       serializers.serialize(object.url, specifiedType: const FullType(String)),
       'title',
@@ -57,6 +59,10 @@ class _$MovieSerializer implements StructuredSerializer<Movie> {
       iterator.moveNext();
       final dynamic value = iterator.current;
       switch (key) {
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
         case 'url':
           result.url = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
@@ -102,6 +108,8 @@ class _$MovieSerializer implements StructuredSerializer<Movie> {
 
 class _$Movie extends Movie {
   @override
+  final int id;
+  @override
   final String url;
   @override
   final String title;
@@ -124,7 +132,8 @@ class _$Movie extends Movie {
       (new MovieBuilder()..update(updates)).build();
 
   _$Movie._(
-      {this.url,
+      {this.id,
+      this.url,
       this.title,
       this.year,
       this.rating,
@@ -134,6 +143,9 @@ class _$Movie extends Movie {
       this.mediumCover,
       this.largeCover})
       : super._() {
+    if (id == null) {
+      throw new BuiltValueNullFieldError('Movie', 'id');
+    }
     if (url == null) {
       throw new BuiltValueNullFieldError('Movie', 'url');
     }
@@ -174,6 +186,7 @@ class _$Movie extends Movie {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is Movie &&
+        id == other.id &&
         url == other.url &&
         title == other.title &&
         year == other.year &&
@@ -193,7 +206,9 @@ class _$Movie extends Movie {
                 $jc(
                     $jc(
                         $jc(
-                            $jc($jc($jc(0, url.hashCode), title.hashCode),
+                            $jc(
+                                $jc($jc($jc(0, id.hashCode), url.hashCode),
+                                    title.hashCode),
                                 year.hashCode),
                             rating.hashCode),
                         runtime.hashCode),
@@ -206,6 +221,7 @@ class _$Movie extends Movie {
   @override
   String toString() {
     return (newBuiltValueToStringHelper('Movie')
+          ..add('id', id)
           ..add('url', url)
           ..add('title', title)
           ..add('year', year)
@@ -221,6 +237,10 @@ class _$Movie extends Movie {
 
 class MovieBuilder implements Builder<Movie, MovieBuilder> {
   _$Movie _$v;
+
+  int _id;
+  int get id => _$this._id;
+  set id(int id) => _$this._id = id;
 
   String _url;
   String get url => _$this._url;
@@ -262,6 +282,7 @@ class MovieBuilder implements Builder<Movie, MovieBuilder> {
 
   MovieBuilder get _$this {
     if (_$v != null) {
+      _id = _$v.id;
       _url = _$v.url;
       _title = _$v.title;
       _year = _$v.year;
@@ -293,6 +314,7 @@ class MovieBuilder implements Builder<Movie, MovieBuilder> {
   _$Movie build() {
     final _$result = _$v ??
         new _$Movie._(
+            id: id,
             url: url,
             title: title,
             year: year,
