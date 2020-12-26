@@ -1,4 +1,5 @@
 import 'package:flutter_course/src/actions/get_photos.dart';
+import 'package:flutter_course/src/actions/set_query.dart';
 import 'package:flutter_course/src/models/app_state.dart';
 
 AppState reducer(AppState state, dynamic action) {
@@ -13,6 +14,10 @@ AppState reducer(AppState state, dynamic action) {
       ..page = builder.page + 1;
   } else if (action is GetPhotosError) {
     builder.isLoading = false;
+  } else if (action is SetQuery) {
+    builder
+      ..query = action.query
+      ..photos.clear();
   }
 
   return builder.build();

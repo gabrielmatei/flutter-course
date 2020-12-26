@@ -13,7 +13,7 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
       builder
         ..isLoading = false
         ..page = 1
-        ..query = 'office';
+        ..query = '';
     });
   }
 
