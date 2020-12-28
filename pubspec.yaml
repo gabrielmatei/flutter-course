@@ -16,6 +16,8 @@ dependencies:
   redux: ^4.0.0+3
   flutter_redux: ^0.7.0
   freezed_annotation: ^0.12.0
+  redux_epics: any
+  rxdart: any
 
 dev_dependencies:
   flutter_test:
