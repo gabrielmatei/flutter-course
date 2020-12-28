@@ -1,14 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_course/src/actions/get_photos.dart';
-import 'package:flutter_course/src/actions/set_color.dart';
-import 'package:flutter_course/src/actions/set_query.dart';
-import 'package:flutter_course/src/containers/color_container.dart';
-import 'package:flutter_course/src/containers/is_loading_container.dart';
-import 'package:flutter_course/src/containers/photos_container.dart';
-import 'package:flutter_course/src/containers/query_container.dart';
-import 'package:flutter_course/src/models/app_state.dart';
-import 'package:flutter_course/src/models/photo.dart';
+import 'package:flutter_course/src/actions/index.dart';
+import 'package:flutter_course/src/containers/index.dart';
+import 'package:flutter_course/src/models/index.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:redux/redux.dart';
@@ -47,7 +41,6 @@ class HomePage extends StatelessWidget {
                                   if (value == store.state.query) {
                                     return;
                                   }
-                                  print(value);
                                   store
                                     ..dispatch(SetQuery(value))
                                     ..dispatch(GetPhotos.start(value, 1, store.state.color));

@@ -1,8 +1,4 @@
-library set_query;
-
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'set_query.freezed.dart';
+part of actions;
 
 @freezed
 abstract class SetQuery with _$SetQuery {

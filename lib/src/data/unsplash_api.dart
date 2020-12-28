@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_course/src/models/photo.dart';
+import 'package:flutter_course/src/models/index.dart';
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';
 

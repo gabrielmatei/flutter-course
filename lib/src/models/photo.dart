@@ -1,11 +1,4 @@
-library photo;
-
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-import 'package:flutter_course/src/models/photo_urls.dart';
-import 'package:flutter_course/src/models/serializers.dart';
-
-part 'photo.g.dart';
+part of models;
 
 abstract class Photo implements Built<Photo, PhotoBuilder> {
   factory Photo([void Function(PhotoBuilder b) updates]) = _$Photo;

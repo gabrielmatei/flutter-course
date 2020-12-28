@@ -1,10 +1,4 @@
-library photo_urls;
-
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-import 'package:flutter_course/src/models/serializers.dart';
-
-part 'photo_urls.g.dart';
+part of models;
 
 abstract class PhotoUrls implements Built<PhotoUrls, PhotoUrlsBuilder> {
   factory PhotoUrls([void Function(PhotoUrlsBuilder b) updates]) = _$PhotoUrls;

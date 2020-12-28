@@ -1,9 +1,4 @@
-library get_photos;
-
-import 'package:flutter_course/src/models/photo.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'get_photos.freezed.dart';
+part of actions;
 
 @freezed
 abstract class GetPhotos with _$GetPhotos {

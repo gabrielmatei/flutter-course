@@ -1,8 +1,4 @@
-library set_color;
-
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'set_color.freezed.dart';
+part of actions;
 
 @freezed
 abstract class SetColor with _$SetColor {
