@@ -13,3 +13,4 @@
 - [Basic Phrases](https://github.com/gabrielmatei/flutter-course/tree/projects/basic-phrases)
 - [Tic Tac Toe](https://github.com/gabrielmatei/flutter-course/tree/projects/tic-tac-toe)
 - [Movie app](https://github.com/gabrielmatei/flutter-course/tree/projects/movie-app)
+- [Photo Gallery](https://github.com/gabrielmatei/flutter-course/tree/projects/photo-gallery)
