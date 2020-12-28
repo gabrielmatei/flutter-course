@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_course/courses/05/src/models/movie.dart';
+import 'package:flutter_course/courses/05/src/models/index.dart';
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_course/courses/05/src/actions/get_movies.dart';
+import 'package:flutter_course/courses/05/src/actions/index.dart';
 import 'package:flutter_course/courses/05/src/data/yts_api.dart';
 import 'package:flutter_course/courses/05/src/middleware/app_middleware.dart';
-import 'package:flutter_course/courses/05/src/models/app_state.dart';
+import 'package:flutter_course/courses/05/src/models/index.dart';
 import 'package:flutter_course/courses/05/src/presentation/home_page.dart';
 import 'package:flutter_course/courses/05/src/presentation/movie_detail.dart';
 import 'package:flutter_course/courses/05/src/reducer/reducer.dart';

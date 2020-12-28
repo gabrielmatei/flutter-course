@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_course/courses/05/src/models/app_state.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redux/redux.dart';
+part of containers;
 
 class OrderByContainer extends StatelessWidget {
   const OrderByContainer({

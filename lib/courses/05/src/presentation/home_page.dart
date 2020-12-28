@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_course/courses/05/src/actions/get_movies.dart';
-import 'package:flutter_course/courses/05/src/actions/set_selected_movie.dart';
-import 'package:flutter_course/courses/05/src/actions/update_genre.dart';
-import 'package:flutter_course/courses/05/src/actions/update_order_by.dart';
-import 'package:flutter_course/courses/05/src/actions/update_quality.dart';
-import 'package:flutter_course/courses/05/src/containers/genre_container.dart';
-import 'package:flutter_course/courses/05/src/containers/movies_container.dart';
-import 'package:flutter_course/courses/05/src/containers/order_by_container.dart';
-import 'package:flutter_course/courses/05/src/models/app_state.dart';
-import 'package:flutter_course/courses/05/src/models/movie.dart';
+import 'package:flutter_course/courses/05/src/actions/index.dart';
+import 'package:flutter_course/courses/05/src/containers/index.dart';
+import 'package:flutter_course/courses/05/src/models/index.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 class HomePage extends StatelessWidget {

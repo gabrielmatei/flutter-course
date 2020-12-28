@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_course/courses/05/src/containers/movie_container.dart';
-import 'package:flutter_course/courses/05/src/models/movie.dart';
+import 'package:flutter_course/courses/05/src/containers/index.dart';
+import 'package:flutter_course/courses/05/src/models/index.dart';
 
 class MovieDetail extends StatelessWidget {
   const MovieDetail({Key key}) : super(key: key);

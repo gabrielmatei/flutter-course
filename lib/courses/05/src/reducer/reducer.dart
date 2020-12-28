@@ -1,40 +1,61 @@
-import 'package:flutter_course/courses/05/src/actions/get_movies.dart';
-import 'package:flutter_course/courses/05/src/actions/set_selected_movie.dart';
-import 'package:flutter_course/courses/05/src/actions/update_genre.dart';
-import 'package:flutter_course/courses/05/src/actions/update_order_by.dart';
-import 'package:flutter_course/courses/05/src/actions/update_quality.dart';
-import 'package:flutter_course/courses/05/src/models/app_state.dart';
+import 'package:flutter_course/courses/05/src/actions/index.dart';
+import 'package:flutter_course/courses/05/src/models/index.dart';
+import 'package:redux/redux.dart';
 
-AppState reducer(AppState state, dynamic action) {
-  final AppStateBuilder builder = state.toBuilder();
+Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
+  TypedReducer<AppState, GetMovieStart>(_getMoviesStart),
+  TypedReducer<AppState, GetMoviesSuccessful>(_getMoviesSuccessful),
+  TypedReducer<AppState, GetMoviesError>(_getMoviesError),
+  TypedReducer<AppState, UpdateQuality>(_updateQuality),
+  TypedReducer<AppState, UpdateGenre>(_updateGenre),
+  TypedReducer<AppState, UpdateOrderBy>(_updateOrderBy),
+  TypedReducer<AppState, SetSelectedMovie>(_setSelectedMovie),
+]);
 
-  if (action is GetMovieStart) {
-    builder.isLoading = true;
-  } else if (action is GetMoviesSuccessful) {
-    builder
+AppState _getMoviesStart(AppState state, GetMovieStart action) {
+  return state.rebuild((AppStateBuilder b) => b.isLoading = true);
+}
+
+AppState _getMoviesSuccessful(AppState state, GetMoviesSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b
       ..movies.addAll(action.movies)
       ..isLoading = false
       ..nextPage = 1;
-  } else if (action is GetMoviesError) {
-    builder.isLoading = false;
-  } else if (action is UpdateQuality) {
-    builder
+  });
+}
+
+AppState _getMoviesError(AppState state, GetMoviesError action) {
+  return state.rebuild((AppStateBuilder b) => b.isLoading = false);
+}
+
+AppState _updateQuality(AppState state, UpdateQuality action) {
+  return state.rebuild((AppStateBuilder b) {
+    b
       ..movies.clear()
       ..nextPage = 1
       ..quality = action.quality;
-  } else if (action is UpdateGenre) {
-    builder
+  });
+}
+
+AppState _updateGenre(AppState state, UpdateGenre action) {
+  return state.rebuild((AppStateBuilder b) {
+    b
       ..movies.clear()
       ..nextPage = 1
       ..genre = action.genre;
-  } else if (action is UpdateOrderBy) {
-    builder
+  });
+}
+
+AppState _updateOrderBy(AppState state, UpdateOrderBy action) {
+  return state.rebuild((AppStateBuilder b) {
+    b
       ..movies.clear()
       ..nextPage = 1
       ..orderBy = action.orderBy;
-  } else if (action is SetSelectedMovie) {
-    builder.selectedMovie = action.movieId;
-  }
+  });
+}
 
-  return builder.build();
+AppState _setSelectedMovie(AppState state, SetSelectedMovie action) {
+  return state.rebuild((AppStateBuilder b) => b.selectedMovie = action.movieId);
 }
