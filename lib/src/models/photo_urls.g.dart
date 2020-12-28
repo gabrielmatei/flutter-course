@@ -19,11 +19,9 @@ class _$PhotoUrlsSerializer implements StructuredSerializer<PhotoUrls> {
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
       'thumb',
-      serializers.serialize(object.thumb,
-          specifiedType: const FullType(String)),
+      serializers.serialize(object.thumb, specifiedType: const FullType(String)),
       'regular',
-      serializers.serialize(object.regular,
-          specifiedType: const FullType(String)),
+      serializers.serialize(object.regular, specifiedType: const FullType(String)),
     ];
 
     return result;
@@ -41,12 +39,10 @@ class _$PhotoUrlsSerializer implements StructuredSerializer<PhotoUrls> {
       final dynamic value = iterator.current;
       switch (key) {
         case 'thumb':
-          result.thumb = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+          result.thumb = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
           break;
         case 'regular':
-          result.regular = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+          result.regular = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
           break;
       }
     }
@@ -61,8 +57,7 @@ class _$PhotoUrls extends PhotoUrls {
   @override
   final String regular;
 
-  factory _$PhotoUrls([void Function(PhotoUrlsBuilder) updates]) =>
-      (new PhotoUrlsBuilder()..update(updates)).build();
+  factory _$PhotoUrls([void Function(PhotoUrlsBuilder) updates]) => (new PhotoUrlsBuilder()..update(updates)).build();
 
   _$PhotoUrls._({this.thumb, this.regular}) : super._() {
     if (thumb == null) {
@@ -74,8 +69,7 @@ class _$PhotoUrls extends PhotoUrls {
   }
 
   @override
-  PhotoUrls rebuild(void Function(PhotoUrlsBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+  PhotoUrls rebuild(void Function(PhotoUrlsBuilder) updates) => (toBuilder()..update(updates)).build();
 
   @override
   PhotoUrlsBuilder toBuilder() => new PhotoUrlsBuilder()..replace(this);
@@ -83,9 +77,7 @@ class _$PhotoUrls extends PhotoUrls {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is PhotoUrls &&
-        thumb == other.thumb &&
-        regular == other.regular;
+    return other is PhotoUrls && thumb == other.thumb && regular == other.regular;
   }
 
   @override
@@ -95,10 +87,7 @@ class _$PhotoUrls extends PhotoUrls {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('PhotoUrls')
-          ..add('thumb', thumb)
-          ..add('regular', regular))
-        .toString();
+    return (newBuiltValueToStringHelper('PhotoUrls')..add('thumb', thumb)..add('regular', regular)).toString();
   }
 }
 

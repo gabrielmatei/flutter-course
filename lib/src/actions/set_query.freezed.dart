@@ -35,8 +35,7 @@ mixin _$SetQuery {
 
 /// @nodoc
 abstract class $SetQueryCopyWith<$Res> {
-  factory $SetQueryCopyWith(SetQuery value, $Res Function(SetQuery) then) =
-      _$SetQueryCopyWithImpl<$Res>;
+  factory $SetQueryCopyWith(SetQuery value, $Res Function(SetQuery) then) = _$SetQueryCopyWithImpl<$Res>;
   $Res call({@nullable String query});
 }
 
@@ -60,15 +59,13 @@ class _$SetQueryCopyWithImpl<$Res> implements $SetQueryCopyWith<$Res> {
 
 /// @nodoc
 abstract class _$SetQueryCopyWith<$Res> implements $SetQueryCopyWith<$Res> {
-  factory _$SetQueryCopyWith(_SetQuery value, $Res Function(_SetQuery) then) =
-      __$SetQueryCopyWithImpl<$Res>;
+  factory _$SetQueryCopyWith(_SetQuery value, $Res Function(_SetQuery) then) = __$SetQueryCopyWithImpl<$Res>;
   @override
   $Res call({@nullable String query});
 }
 
 /// @nodoc
-class __$SetQueryCopyWithImpl<$Res> extends _$SetQueryCopyWithImpl<$Res>
-    implements _$SetQueryCopyWith<$Res> {
+class __$SetQueryCopyWithImpl<$Res> extends _$SetQueryCopyWithImpl<$Res> implements _$SetQueryCopyWith<$Res> {
   __$SetQueryCopyWithImpl(_SetQuery _value, $Res Function(_SetQuery) _then)
       : super(_value, (v) => _then(v as _SetQuery));
 
@@ -102,17 +99,14 @@ class _$_SetQuery implements _SetQuery {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _SetQuery &&
-            (identical(other.query, query) ||
-                const DeepCollectionEquality().equals(other.query, query)));
+            (identical(other.query, query) || const DeepCollectionEquality().equals(other.query, query)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(query);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(query);
 
   @override
-  _$SetQueryCopyWith<_SetQuery> get copyWith =>
-      __$SetQueryCopyWithImpl<_SetQuery>(this, _$identity);
+  _$SetQueryCopyWith<_SetQuery> get copyWith => __$SetQueryCopyWithImpl<_SetQuery>(this, _$identity);
 }
 
 abstract class _SetQuery implements SetQuery {

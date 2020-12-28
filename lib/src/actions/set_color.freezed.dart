@@ -35,8 +35,7 @@ mixin _$SetColor {
 
 /// @nodoc
 abstract class $SetColorCopyWith<$Res> {
-  factory $SetColorCopyWith(SetColor value, $Res Function(SetColor) then) =
-      _$SetColorCopyWithImpl<$Res>;
+  factory $SetColorCopyWith(SetColor value, $Res Function(SetColor) then) = _$SetColorCopyWithImpl<$Res>;
   $Res call({@nullable String color});
 }
 
@@ -60,15 +59,13 @@ class _$SetColorCopyWithImpl<$Res> implements $SetColorCopyWith<$Res> {
 
 /// @nodoc
 abstract class _$SetColorCopyWith<$Res> implements $SetColorCopyWith<$Res> {
-  factory _$SetColorCopyWith(_SetColor value, $Res Function(_SetColor) then) =
-      __$SetColorCopyWithImpl<$Res>;
+  factory _$SetColorCopyWith(_SetColor value, $Res Function(_SetColor) then) = __$SetColorCopyWithImpl<$Res>;
   @override
   $Res call({@nullable String color});
 }
 
 /// @nodoc
-class __$SetColorCopyWithImpl<$Res> extends _$SetColorCopyWithImpl<$Res>
-    implements _$SetColorCopyWith<$Res> {
+class __$SetColorCopyWithImpl<$Res> extends _$SetColorCopyWithImpl<$Res> implements _$SetColorCopyWith<$Res> {
   __$SetColorCopyWithImpl(_SetColor _value, $Res Function(_SetColor) _then)
       : super(_value, (v) => _then(v as _SetColor));
 
@@ -102,17 +99,14 @@ class _$_SetColor implements _SetColor {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _SetColor &&
-            (identical(other.color, color) ||
-                const DeepCollectionEquality().equals(other.color, color)));
+            (identical(other.color, color) || const DeepCollectionEquality().equals(other.color, color)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(color);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(color);
 
   @override
-  _$SetColorCopyWith<_SetColor> get copyWith =>
-      __$SetColorCopyWithImpl<_SetColor>(this, _$identity);
+  _$SetColorCopyWith<_SetColor> get copyWith => __$SetColorCopyWithImpl<_SetColor>(this, _$identity);
 }
 
 abstract class _SetColor implements SetColor {

@@ -73,8 +73,7 @@ mixin _$GetPhotos {
 
 /// @nodoc
 abstract class $GetPhotosCopyWith<$Res> {
-  factory $GetPhotosCopyWith(GetPhotos value, $Res Function(GetPhotos) then) =
-      _$GetPhotosCopyWithImpl<$Res>;
+  factory $GetPhotosCopyWith(GetPhotos value, $Res Function(GetPhotos) then) = _$GetPhotosCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -88,8 +87,7 @@ class _$GetPhotosCopyWithImpl<$Res> implements $GetPhotosCopyWith<$Res> {
 
 /// @nodoc
 abstract class $GetPhotosStartCopyWith<$Res> {
-  factory $GetPhotosStartCopyWith(
-          GetPhotosStart value, $Res Function(GetPhotosStart) then) =
+  factory $GetPhotosStartCopyWith(GetPhotosStart value, $Res Function(GetPhotosStart) then) =
       _$GetPhotosStartCopyWithImpl<$Res>;
   $Res call({String query, int page, String color});
 }
@@ -97,8 +95,7 @@ abstract class $GetPhotosStartCopyWith<$Res> {
 /// @nodoc
 class _$GetPhotosStartCopyWithImpl<$Res> extends _$GetPhotosCopyWithImpl<$Res>
     implements $GetPhotosStartCopyWith<$Res> {
-  _$GetPhotosStartCopyWithImpl(
-      GetPhotosStart _value, $Res Function(GetPhotosStart) _then)
+  _$GetPhotosStartCopyWithImpl(GetPhotosStart _value, $Res Function(GetPhotosStart) _then)
       : super(_value, (v) => _then(v as GetPhotosStart));
 
   @override
@@ -141,12 +138,9 @@ class _$GetPhotosStart implements GetPhotosStart {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is GetPhotosStart &&
-            (identical(other.query, query) ||
-                const DeepCollectionEquality().equals(other.query, query)) &&
-            (identical(other.page, page) ||
-                const DeepCollectionEquality().equals(other.page, page)) &&
-            (identical(other.color, color) ||
-                const DeepCollectionEquality().equals(other.color, color)));
+            (identical(other.query, query) || const DeepCollectionEquality().equals(other.query, query)) &&
+            (identical(other.page, page) || const DeepCollectionEquality().equals(other.page, page)) &&
+            (identical(other.color, color) || const DeepCollectionEquality().equals(other.color, color)));
   }
 
   @override
@@ -218,8 +212,7 @@ class _$GetPhotosStart implements GetPhotosStart {
 }
 
 abstract class GetPhotosStart implements GetPhotos {
-  const factory GetPhotosStart(String query, int page, String color) =
-      _$GetPhotosStart;
+  const factory GetPhotosStart(String query, int page, String color) = _$GetPhotosStart;
 
   String get query;
   int get page;
@@ -229,18 +222,15 @@ abstract class GetPhotosStart implements GetPhotos {
 
 /// @nodoc
 abstract class $GetPhotosSuccessfulCopyWith<$Res> {
-  factory $GetPhotosSuccessfulCopyWith(
-          GetPhotosSuccessful value, $Res Function(GetPhotosSuccessful) then) =
+  factory $GetPhotosSuccessfulCopyWith(GetPhotosSuccessful value, $Res Function(GetPhotosSuccessful) then) =
       _$GetPhotosSuccessfulCopyWithImpl<$Res>;
   $Res call({List<Photo> photos});
 }
 
 /// @nodoc
-class _$GetPhotosSuccessfulCopyWithImpl<$Res>
-    extends _$GetPhotosCopyWithImpl<$Res>
+class _$GetPhotosSuccessfulCopyWithImpl<$Res> extends _$GetPhotosCopyWithImpl<$Res>
     implements $GetPhotosSuccessfulCopyWith<$Res> {
-  _$GetPhotosSuccessfulCopyWithImpl(
-      GetPhotosSuccessful _value, $Res Function(GetPhotosSuccessful) _then)
+  _$GetPhotosSuccessfulCopyWithImpl(GetPhotosSuccessful _value, $Res Function(GetPhotosSuccessful) _then)
       : super(_value, (v) => _then(v as GetPhotosSuccessful));
 
   @override
@@ -272,13 +262,11 @@ class _$GetPhotosSuccessful implements GetPhotosSuccessful {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is GetPhotosSuccessful &&
-            (identical(other.photos, photos) ||
-                const DeepCollectionEquality().equals(other.photos, photos)));
+            (identical(other.photos, photos) || const DeepCollectionEquality().equals(other.photos, photos)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(photos);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(photos);
 
   @override
   $GetPhotosSuccessfulCopyWith<GetPhotosSuccessful> get copyWith =>
@@ -350,8 +338,7 @@ abstract class GetPhotosSuccessful implements GetPhotos {
 
 /// @nodoc
 abstract class $GetPhotosErrorCopyWith<$Res> {
-  factory $GetPhotosErrorCopyWith(
-          GetPhotosError value, $Res Function(GetPhotosError) then) =
+  factory $GetPhotosErrorCopyWith(GetPhotosError value, $Res Function(GetPhotosError) then) =
       _$GetPhotosErrorCopyWithImpl<$Res>;
   $Res call({dynamic error});
 }
@@ -359,8 +346,7 @@ abstract class $GetPhotosErrorCopyWith<$Res> {
 /// @nodoc
 class _$GetPhotosErrorCopyWithImpl<$Res> extends _$GetPhotosCopyWithImpl<$Res>
     implements $GetPhotosErrorCopyWith<$Res> {
-  _$GetPhotosErrorCopyWithImpl(
-      GetPhotosError _value, $Res Function(GetPhotosError) _then)
+  _$GetPhotosErrorCopyWithImpl(GetPhotosError _value, $Res Function(GetPhotosError) _then)
       : super(_value, (v) => _then(v as GetPhotosError));
 
   @override
@@ -392,13 +378,11 @@ class _$GetPhotosError implements GetPhotosError {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is GetPhotosError &&
-            (identical(other.error, error) ||
-                const DeepCollectionEquality().equals(other.error, error)));
+            (identical(other.error, error) || const DeepCollectionEquality().equals(other.error, error)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
 
   @override
   $GetPhotosErrorCopyWith<GetPhotosError> get copyWith =>

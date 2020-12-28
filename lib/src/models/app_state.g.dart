@@ -18,11 +18,9 @@ class _$AppState extends AppState {
   @override
   final bool isLoading;
 
-  factory _$AppState([void Function(AppStateBuilder) updates]) =>
-      (new AppStateBuilder()..update(updates)).build();
+  factory _$AppState([void Function(AppStateBuilder) updates]) => (new AppStateBuilder()..update(updates)).build();
 
-  _$AppState._({this.photos, this.page, this.query, this.color, this.isLoading})
-      : super._() {
+  _$AppState._({this.photos, this.page, this.query, this.color, this.isLoading}) : super._() {
     if (photos == null) {
       throw new BuiltValueNullFieldError('AppState', 'photos');
     }
@@ -41,8 +39,7 @@ class _$AppState extends AppState {
   }
 
   @override
-  AppState rebuild(void Function(AppStateBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+  AppState rebuild(void Function(AppStateBuilder) updates) => (toBuilder()..update(updates)).build();
 
   @override
   AppStateBuilder toBuilder() => new AppStateBuilder()..replace(this);
@@ -60,10 +57,8 @@ class _$AppState extends AppState {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc($jc($jc($jc(0, photos.hashCode), page.hashCode), query.hashCode),
-            color.hashCode),
-        isLoading.hashCode));
+    return $jf(
+        $jc($jc($jc($jc($jc(0, photos.hashCode), page.hashCode), query.hashCode), color.hashCode), isLoading.hashCode));
   }
 
   @override
@@ -132,21 +127,15 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   _$AppState build() {
     _$AppState _$result;
     try {
-      _$result = _$v ??
-          new _$AppState._(
-              photos: photos.build(),
-              page: page,
-              query: query,
-              color: color,
-              isLoading: isLoading);
+      _$result =
+          _$v ?? new _$AppState._(photos: photos.build(), page: page, query: query, color: color, isLoading: isLoading);
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'photos';
         photos.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'AppState', _$failedField, e.toString());
+        throw new BuiltValueNestedFieldError('AppState', _$failedField, e.toString());
       }
       rethrow;
     }
