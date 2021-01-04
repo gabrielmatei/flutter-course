@@ -1,16 +1,46 @@
-# flutter_course
+# Instagram Clone (470') (535' with optionals)
 
-A new Flutter project.
+This is a clone of Instagram with the following features:
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* [ ] Setup project (20')
+    * This includes adding all necessary dependencies, redux and service configuration
+* [ ] Splash screen (10')
+* [ ] Authentication (Login/Logout/Sign Up) (40')
+    * [ ] Login/signup with email and password (15')
+    * [ ] Login/signup with Google (10')
+    * [ ] Login/signup with Apple (10')
+    * [ ] Reset password (5')
+* [ ] Feed Page (show posts of following users, add comments, like and share and save a post) (70')
+    * [ ] Show posts of users that I follow (20')
+    * [ ] Add comment (10')
+    * [ ] Like (double tap to like) (10')
+    * [ ] Share (10')
+    * [ ] Save (10')
+    * [ ] Show post owner profile (5')
+    * [ ] Report (5')
+* [ ] Search + Trending (65')
+    * [ ] username (20')
+    * [ ] tags (25')
+    * [ ] show trending (20')
+* [ ] Add post (115')
+    * [ ] add multiple pictures from the gallery and camera (40')
+    * [ ] add tags (25')
+    * [ ] add a person (20')
+    * [ ] add location (20')
+    * [ ] post comment (10')
+* [ ] Notifications (75')
+    * [ ] a new follower (15')
+    * [ ] new like (15')
+    * [ ] new comment (15')
+    * [ ] someone tagged you (15')
+    * [ ] new post from following (15')
+* [ ] Profile page (75')
+    * [ ] follow user (10')
+    * [ ] profile counters (posts, followers and following) (20')
+    * [ ] users posts (10')
+    * [ ] photos tagged with user (25')
+    * [ ] saved posts (10')
+* [ ] (Optional) Chat (65')
+    * [ ] show chats (25')
+    * [ ] send messages (15')
+    * [ ] send pictures and videos (25')
