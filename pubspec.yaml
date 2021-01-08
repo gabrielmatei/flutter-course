@@ -1,7 +1,7 @@
 name: flutter_course
-description: A new Flutter project.
+description: Instagram clone
 publish_to: 'none'
-version: 1.0.0+1
+version: 0.0.1
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -11,9 +11,29 @@ dependencies:
     sdk: flutter
   pedantic: ^1.9.2
 
+  # flutter
+  flutter_redux: any
+
+  # dart
+  redux: any
+  redux_epics: any
+  rxdart: any
+  built_value: any
+  built_collection: any
+  freezed_annotation: any
+  http: any
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  build_runner: any
+  built_value_generator: any
+  freezed: any
+
+dependency_overrides:
+  rxdart: ^0.25.0
+  analyzer: 0.41.1
 
 flutter:
   uses-material-design: true
