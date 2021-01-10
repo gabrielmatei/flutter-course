@@ -12,19 +12,21 @@ dependencies:
   pedantic: ^1.9.2
 
   # firebase
-  firebase_core: any
+  firebase_core: ^0.5.3
+  firebase_auth: any
+  cloud_firestore: any
 
   # flutter
-  flutter_redux: any
+  flutter_redux: ^0.7.0
 
   # dart
-  redux: any
-  redux_epics: any
-  rxdart: any
-  built_value: any
-  built_collection: any
-  freezed_annotation: any
-  http: any
+  redux: ^4.0.0+3
+  redux_epics: ^0.14.0
+  rxdart: ^0.25.0
+  built_value: ^7.1.0
+  built_collection: ^4.3.2
+  freezed_annotation: ^0.12.0
+  http: ^0.12.2
 
 dev_dependencies:
   flutter_test:
